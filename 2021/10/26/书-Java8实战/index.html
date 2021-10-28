@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Jin Yan">
+  <meta name="keywords" content="">
+  <meta name="description" content="前言在去美团实习之前，实际上自己使用Java8的特性很少，印象中只有几次在项目代码里用了Stream流，后来到了公司后发现代码里非常多的流操作和Lambda表达式，如果不是之前学过新特性估计就跟看天书一样。Java8提供的新特性用处非常多，因此最近通过《Java8实战》这本书来巩固下Lambda、Stream流、新的日期API等知识点。 注重思想，API忘了可以再查。 Lambda行为参数化在软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="书-Java8实战">
+<meta property="og:url" content="http://example.com/2021/10/26/%E4%B9%A6-Java8%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="ViceTone的博客">
+<meta property="og:description" content="前言在去美团实习之前，实际上自己使用Java8的特性很少，印象中只有几次在项目代码里用了Stream流，后来到了公司后发现代码里非常多的流操作和Lambda表达式，如果不是之前学过新特性估计就跟看天书一样。Java8提供的新特性用处非常多，因此最近通过《Java8实战》这本书来巩固下Lambda、Stream流、新的日期API等知识点。 注重思想，API忘了可以再查。 Lambda行为参数化在软件">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280012306.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280013228.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280014944.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280035144.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280116684.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280120986.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280048637.png">
+<meta property="article:published_time" content="2021-10-26T12:17:26.000Z">
+<meta property="article:modified_time" content="2021-10-28T06:41:28.053Z">
+<meta property="article:author" content="Jin Yan">
+<meta property="article:tag" content="Java8">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280012306.png">
+  
+  <title>书-Java8实战 - ViceTone的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Vice-Tone的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="书-Java8实战">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-26 20:17" pubdate>
+        October 26, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">书-Java8实战</h1>
+            
+            <div class="markdown-body">
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在去美团实习之前，实际上自己使用Java8的特性很少，印象中只有几次在项目代码里用了Stream流，后来到了公司后发现代码里非常多的流操作和Lambda表达式，如果不是之前学过新特性估计就跟看天书一样。Java8提供的新特性用处非常多，因此最近通过《Java8实战》这本书来巩固下Lambda、Stream流、新的日期API等知识点。</p>
+<p>注重思想，API忘了可以再查。</p>
+<h2 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h2><h3 id="行为参数化"><a href="#行为参数化" class="headerlink" title="行为参数化"></a>行为参数化</h3><p>在软件工程中，一个众所周知的问题就是，不管你做什么，用户的需求肯定会变。比方说， 有个应用程序是帮助农民了解自己的库存的。这位农民可能想有一个查找库存中所有绿色苹果的功能。但到了第二天，他可能会告诉你：“其实我还想找出所有重量超过150克的苹果。”又过了两天，农民又跑回来补充道：“要是我可以找出所有既是绿色，重量也超过150克的苹果，那就太棒了。”你要如何应对这样不断变化的需求？理想的状态下，应该把你的工作量降到最少。此外，类似的新功能实现起来还应该很简单，而且易于长期维护。</p>
+<p>行为参数化就是可以帮助你处理频繁变更的需求的一种软件开发模式。一言以蔽之，它意味着拿出一个代码块，把它准备好却不去执行它。这个代码块以后可以被你程序的其他部分调用，这意味着你可以推迟这块代码的执行。例如，你可以将代码块作为参数传递给另一个方法，稍后再去执行它。这样，这个方法的行为就基于那块代码被参数化了。例如，如果你要处理一个集合， 可能会写一个方法：可以对列表中的每个元素做“某件事”。行为参数化说的就是这个，将“某件事”通过参数传进去。</p>
+<p>上代码！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 第一版</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;Apple&gt; <span class="hljs-title">filterGreenApples</span><span class="hljs-params">(List&lt;Apple&gt; inventory)</span> </span>&#123;<br>  List&lt;Apple&gt; result = <span class="hljs-keyword">new</span> ArrayList&lt;Apple&gt;(); <br>  <span class="hljs-keyword">for</span>(Apple apple: inventory)&#123; <br>    <span class="hljs-keyword">if</span>( <span class="hljs-string">&quot;green&quot;</span>.equals(apple.getColor() ) &#123; <br>      result.add(apple);<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br><span class="hljs-comment">// 第二版，加了一个功能，可以筛选重量</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;Apple&gt; <span class="hljs-title">filterApplesByWeight</span><span class="hljs-params">(List&lt;Apple&gt; inventory, <span class="hljs-keyword">int</span> weight)</span> </span>&#123; <br>  List&lt;Apple&gt; result = <span class="hljs-keyword">new</span> ArrayList&lt;Apple&gt;(); <br>  For (Apple apple: inventory)&#123; <br>    <span class="hljs-keyword">if</span> ( apple.getWeight() &gt; weight )&#123; <br>      result.add(apple); <br>    &#125; <br>  &#125; <br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br><span class="hljs-comment">// 这个时候我们发现了问题，我们不可能用户每提一个需求就来修改代码，违反开闭原则，同时我们还在copy代码</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 第三版，这个时候行为参数化就派上了用场</span><br><span class="hljs-comment">// 我们将筛选苹果封装为一个参数，然后传给filterApples方法，其实就是策略模式</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ApplePredicate</span></span>&#123; <br>  <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">test</span> <span class="hljs-params">(Apple apple)</span></span>; <br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppleHeavyWeightPredicate</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplePredicate</span></span>&#123; <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">test</span><span class="hljs-params">(Apple apple)</span></span>&#123; <br>    <span class="hljs-keyword">return</span> apple.getWeight() &gt; <span class="hljs-number">150</span>; <br>  &#125; <br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppleGreenColorPredicate</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplePredicate</span></span>&#123; <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">test</span><span class="hljs-params">(Apple apple)</span></span>&#123; <br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;green&quot;</span>.equals(apple.getColor()); <br>  &#125; <br>&#125;<br><span class="hljs-comment">// filterApples方法接受多种行为（或策略）作为参数，并在内部使用，从而完成不同的行为</span><br><span class="hljs-comment">// filterApples方法的行为取决于我们通过ApplePredicate对象传递的代码，因此我们实现了filterApples方法的行为参数化。多种行为，一个参数</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;Apple&gt; <span class="hljs-title">filterApples</span><span class="hljs-params">(List&lt;Apple&gt; inventory, ApplePredicate p)</span></span>&#123; <br>  List&lt;Apple&gt; result = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>  <span class="hljs-keyword">for</span>(Apple apple: inventory)&#123;<br>    <span class="hljs-keyword">if</span>(p.test(apple))&#123;<br>      result.add(apple); <br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br><span class="hljs-comment">// 现在我们的代码足够灵活了，有新的需求时，我们只需要定义一个ApplePredicate接口的实现类即可</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280012306.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280013228.png" srcset="/img/loading.gif" lazyload alt="image-20211028001324169"></p>
+<h3 id="使用匿名内部类-amp-Lambda简化代码"><a href="#使用匿名内部类-amp-Lambda简化代码" class="headerlink" title="使用匿名内部类 &amp; Lambda简化代码"></a>使用匿名内部类 &amp; Lambda简化代码</h3><p>我们再看下上面第三版的代码还有什么可优化的点。上面每一种苹果筛选的策略代码比较简单，都只有一行，然而我们却定义了很多实现类，需要通过接口实例，把代码包裹在ApplePredicate对象里，才能将筛选苹果的行为传递到filterApples方法。</p>
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280014944.png" srcset="/img/loading.gif" lazyload alt="image-20211028001403889"></p>
+<p>Java则提供了一种机制：匿名内部类。使用匿名内部类的filterApples方法调用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Apple&gt; redApples = filterApples(inventory, <span class="hljs-keyword">new</span> ApplePredicate() &#123; <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">test</span><span class="hljs-params">(Apple a)</span></span>&#123; <br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;red&quot;</span>.equals(a.getColor());<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>对于匿名内部类来说，你发现问题了没，仍然有很多骨架代码是不必的。</p>
+<p>实际上我们真正关注的就是test方法的行为，因此我们是不是可以直接将test方法的行为直接传给filterApples方法。即将test方法作为参数传递到filterApples方法，将方法（函数）作为和对象相同的一等公民，这就是Lambda，通过Lambda传递方法。</p>
+<p>个人感觉Lambda和匿名内部类很像，是匿名内部类的一种简化形式，通过反编译后我们会发现Lambda底层原理还是实现接口，传递接口实例，也即Lambda整个表达式是函数式接口的一个实例。</p>
+<p>使用Lambda后filterApples方法调用代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 简洁明了</span><br>List&lt;Apple&gt; result = filterApples(inventory,(Apple apple) -&gt; apple.getWeight() &gt; <span class="hljs-number">150</span>);<br></code></pre></td></tr></table></figure>
+
+<p>最后我们还可以利用泛型，将ApplePredicate接口改为ApplePredicate<T>,使其抽象化，这个不是重点。</p>
+<p><strong>再次提醒下，如果每种策略的实现逻辑比较复杂，那么还是应该采用策略模式。</strong></p>
+<h3 id="再到方法引用"><a href="#再到方法引用" class="headerlink" title="再到方法引用"></a>再到方法引用</h3><p>既然有了函数式编程的思想，方法（函数）已经被我们看做和对象相等的一等公民，对象有对象引用，那么方法就有方法引用。</p>
+<p>方法引用可以被看作仅仅调用特定方法的Lambda的一种快捷写法。它的基本思想是，如果一个Lambda代表的只是“直接调用这个方法”，那最好还是用名称来调用它，而不是去描述如何调用它。这样更加简洁，通过恰当的方法名，代码的可读性也更好，同时还可以复用方法。个人理解可以把方法引用看做是Lambda的语法糖。</p>
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280035144.png" srcset="/img/loading.gif" lazyload alt="image-20211028003552088"></p>
+<h2 id="Stream流"><a href="#Stream流" class="headerlink" title="Stream流"></a>Stream流</h2><p><strong>Java8的重头戏！！！建议阅读原书</strong></p>
+<h3 id="集合和流"><a href="#集合和流" class="headerlink" title="集合和流"></a>集合和流</h3><p>Collection集合是我们平时最常用的API，这个没毛病。集合是数据结构，所以它的主要目的是以特定的时间/空间复杂度存储和访问元素。但流的目的在于表达计算，即对集合中的元素做什么操作。集合讲的是数据，流讲的是计算。</p>
+<p>我们平时通过for-each遍历集合，这称为外部迭代。相反，Stream使用内部迭代，它帮我们把迭代做了，内部既可以基于串行，也可以基于并行，发挥多核CPU的优势，它还把得到的流值存在了某个地方，我们只要给出一个函数说要干什么就可以了，即使用了声明性的方式来处理数据。</p>
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280116684.png" srcset="/img/loading.gif" lazyload alt="image-20211028011644616"></p>
+<h3 id="流的一些特点"><a href="#流的一些特点" class="headerlink" title="流的一些特点"></a>流的一些特点</h3><ul>
+<li>流水线：很多流操作本身会返回一个流，这样多个操作就可以链接起来，实现复杂逻辑。</li>
+<li>内部迭代：上面说了。</li>
+<li>按需计算：流就像是一个延迟创建的集合，只有在消费者要求的时候才会计算值。</li>
+<li>只能遍历一次：流只能遍历一次，遍历完之后，我们就说这个流已经被消费掉了。 你可以从原始数据源那里再获得一个新的流来重新遍历一遍。</li>
+</ul>
+<h3 id="使用流"><a href="#使用流" class="headerlink" title="使用流"></a>使用流</h3><p>这一部分不是针对小白，因此需要一些前置知识。话不多说，直接上图：</p>
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280120986.png" srcset="/img/loading.gif" lazyload alt="image-20211028012045922"></p>
+<p>主要可以分成两类操作，中间操作和终端操作。中间操作返回值为一个新的流，相反只要返回值不是流，那么就是终端操作，终端操作的返回值通常为集合，或是一个值。每一步操作传递的都是一个函数式接口，因此常和Lambda搭配使用。</p>
+<p>常用的操作我就不举例子了，下面举的例子都是我不太熟的一些操作。</p>
+<h4 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h4><p>流的扁平化，第一次碰见这个搞了好久才明白 = =。</p>
+<p>需求：给定单词列表 [“Hello”,”World”]，返回列表[“H”,”e”,”l”, “o”,”W”,”r”,”d”]。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">words.stream()<br>  	 .map(s -&gt; s.split(<span class="hljs-string">&quot;&quot;</span>))<br>  	 .flatMap(Arrays::stream)<br>     .distinct<br>     .collect(toList);<br></code></pre></td></tr></table></figure>
+
+<p>flatMap相当于对流中的每个元素应用map，并生成单独的一个流，最后将所有流连接起来。</p>
+<h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h4><p>需求：给定一个数字集合，求出总和、最大值、最小值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> sum = numbers.stream().reduce(<span class="hljs-number">0</span>, (a, b) -&gt; a + b);<br><br>Optional&lt;Integer&gt; max = numbers.stream().reduce((x, y) -&gt; x &gt; y ? x : y);<br>Optional&lt;Integer&gt; max = numbers.stream().reduce(Integer::max);<br><br>Optional&lt;Integer&gt; min = numbers.stream().reduce(Integer::min);<br></code></pre></td></tr></table></figure>
+
+<h4 id="collect"><a href="#collect" class="headerlink" title="collect"></a>collect</h4><p>collect操作的参数为一个Collector接口，因此我们需要传一个Collector接口的实现类，实际中常用Collectors类的静态工厂方法。</p>
+<p>主要有三大类：</p>
+<ul>
+<li>第一类：广义的reducing操作，和上面的reduce差不多，感觉功能更多点。</li>
+<li>第二类：分组、分区操作，结果是一个Map。</li>
+<li>第三类：返回一个集合，toList、toSet、toMap等等。</li>
+</ul>
+<p>还有其他的可以去看Collectors类的源码。</p>
+<h3 id="关于并行流"><a href="#关于并行流" class="headerlink" title="关于并行流"></a>关于并行流</h3><p>由于内部迭代的特点，我们并不需要关注迭代具体如何实现的。将stream方法换成parallelStream即可实现并行流，不需要其他任何操作。底层原理是fork/join框架。</p>
+<p><strong>But ！！！But ！！！But ！！！</strong></p>
+<ul>
+<li>并不是任何的流操作使用并行流就一定更快，并行的行为和性能有时是违反直觉的，因此一定要测试，测试，再测试！</li>
+<li>流中元素数量特别多时并行流才逐渐展现优势，多到什么样的数量级，这个没有定论，得看你流中的元素的复杂度。</li>
+<li>从性能角度来看，使用正确的数据结构，如尽可能利用原始流而不是一般化的流，避免频繁的装箱拆箱操作，几乎总是比尝试并行化某些操作更为重要。</li>
+</ul>
+<h2 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h2><p>相信NPE是我们遇到的最多的问题。如何解决NPE，最直观的思路就是加个判断。但是当对象嵌套多层时，它让我们的代码充斥着深度嵌套的null检查，代码的可读性变差。</p>
+<p>那么Java8的做法就是引入Optional类。一个Optional<T>类型的对象，它有可能包含了一个T类型的对象，也有可能不包含。因此Optional类显式的提醒了程序员，这个里面有可能是null。</p>
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202110280048637.png" srcset="/img/loading.gif" lazyload alt="image-20211028004840572"></p>
+<p>不过Optional类我使用的挺少的。。。。在美团的时候主要的做法还是直接判断。</p>
+<p>下面总结判空的各种方法：</p>
+<ul>
+<li>obj != null</li>
+<li>Objects.nonNull ( list )</li>
+<li>后续补充中……</li>
+</ul>
+<h2 id="日期API"><a href="#日期API" class="headerlink" title="日期API"></a>日期API</h2><p>实习期间做过一个需求，需要将传入的时间段参数按周维度切分，且如果开始时间为周三，则将开始时间往前推到这一周的第一天，结束时间同理。这个需求当时用新的日期API完成的，日期操作的代码量大概就是四五行，总体感觉就是新的API简洁明了、容易使用，个人强烈推荐！</p>
+<p>以下总结一些常用的API，以便以后查询。有的方法一看方法名就知道是干啥的就不做解释了。</p>
+<h3 id="LocalDate"><a href="#LocalDate" class="headerlink" title="LocalDate"></a>LocalDate</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// LocalDate，只包含日期，不包含时间</span><br><span class="hljs-comment">// 当前日期</span><br>LocalDate now = LocalDate.now();<br><span class="hljs-comment">// 指定日期</span><br>LocalDate date = LocalDate.of(<span class="hljs-number">2021</span>, <span class="hljs-number">10</span>, <span class="hljs-number">27</span>);<br>LocalDate date = LocalDate.parse(<span class="hljs-string">&quot;2014-03-18&quot;</span>);<br><span class="hljs-comment">// 获取年、月、日、周、当前月的天数、是否闰年...</span><br><span class="hljs-keyword">int</span> year = date.getYear();<br>Month month = date.getMonth();<br><span class="hljs-keyword">int</span> dayOfMonth = date.getDayOfMonth();<br>DayOfWeek dayOfWeek = date.getDayOfWeek();<br><span class="hljs-keyword">int</span> lengthOfMonth = date.lengthOfMonth();<br><span class="hljs-keyword">boolean</span> leapYear = date.isLeapYear();<br></code></pre></td></tr></table></figure>
+
+<h3 id="LocalTime"><a href="#LocalTime" class="headerlink" title="LocalTime"></a>LocalTime</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// LocalTime，只包含时间，不包含日期</span><br>LocalTime now = LocalTime.now();<br>LocalTime time = LocalTime.of(<span class="hljs-number">13</span>, <span class="hljs-number">45</span>, <span class="hljs-number">20</span>);<br><span class="hljs-comment">// 与LocalDate.parse()相同，你可以为parse()传一个DateTimeFormatter，来指定日期字符串的格式</span><br>LocalTime time = LocalTime.parse(<span class="hljs-string">&quot;13:45:20&quot;</span>);<br><span class="hljs-keyword">int</span> hour = time.getHour();<br><span class="hljs-keyword">int</span> minute = time.getMinute();<br><span class="hljs-keyword">int</span> second = time.getSecond();<br></code></pre></td></tr></table></figure>
+
+<h3 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// LocalDateTime，包含日期和时间</span><br>LocalDateTime dt1 = LocalDateTime.of(<span class="hljs-number">2021</span>, Month.OCTOBER, <span class="hljs-number">27</span>, <span class="hljs-number">13</span>, <span class="hljs-number">45</span>, <span class="hljs-number">20</span>);<br>LocalDateTime dt1 = LocalDateTime.parse(<span class="hljs-string">&quot;2021-10-28 23:59:59&quot;</span>);<br><span class="hljs-comment">// 由LocalDate和LocalDateTime合并</span><br>LocalDateTime dt2 = LocalDateTime.of(date, time);<br><span class="hljs-comment">// 转化</span><br><span class="hljs-comment">// LocalDate =&gt; LocalDateTime</span><br>LocalDateTime dt3 = date.atTime(<span class="hljs-number">13</span>, <span class="hljs-number">45</span>, <span class="hljs-number">20</span>);<br>LocalDateTime dt4 = date.atTime(time);<br><span class="hljs-comment">// LocalTime =&gt; LocalDateTime</span><br>LocalDateTime dt5 = time.atDate(date);<br><span class="hljs-comment">// LocalDateTime =&gt; LocalDate</span><br>LocalDate date = dt1.toLocalDate();<br><span class="hljs-comment">// LocalDateTime =&gt; LocalTime</span><br>LocalTime time = dt1.toLocalTime();<br></code></pre></td></tr></table></figure>
+
+<h3 id="Instant"><a href="#Instant" class="headerlink" title="Instant"></a>Instant</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Instant 时间戳</span><br><span class="hljs-comment">// 注意：Instant区分时区信息</span><br>Instant now = Instant.now().atZone(ZoneId.systemDefault()).toInstant();<br><span class="hljs-comment">// 秒</span><br><span class="hljs-keyword">long</span> epochSecond = now.getEpochSecond();<br><span class="hljs-comment">// 毫秒</span><br><span class="hljs-keyword">long</span> epochMilli = now.toEpochMilli();<br><span class="hljs-comment">// LocalDateTime =&gt; Instant</span><br>LocalDateTime localDateTime = LocalDateTime.now();<br>Instant now = localDateTime.atZone(ZoneId.systemDefault()).toInstant();<br><span class="hljs-comment">// Instant =&gt; LocalDateTime</span><br>Instant now = Instant.now();<br>LocalDateTime dt = LocalDateTime.ofInstant(now, ZoneId.systemDefault());<br></code></pre></td></tr></table></figure>
+
+<h3 id="Duration-amp-Period"><a href="#Duration-amp-Period" class="headerlink" title="Duration &amp; Period"></a>Duration &amp; Period</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Duration Period 计算两个时间之间的差值</span><br><span class="hljs-comment">// Duration基于时间，即秒，纳秒</span><br>Duration d1 = Duration.between(localtime1, localtime2);<br>Duration d1 = Duration.between(localdateTime1, localdateTime2);<br>Duration d2 = Duration.between(instant1, instant2);<br><span class="hljs-keyword">long</span> seconds = d1.getSeconds();<br><span class="hljs-keyword">int</span> nano = d1.getNano();<br><span class="hljs-comment">// Period基于日期，即天数，月数</span><br>Period period = Period.between(LocalDate.of(<span class="hljs-number">2021</span>, <span class="hljs-number">10</span>, <span class="hljs-number">18</span>), LocalDate.of(<span class="hljs-number">2021</span>, <span class="hljs-number">10</span>, <span class="hljs-number">28</span>));<br><span class="hljs-keyword">int</span> days = period.getDays();<br><span class="hljs-keyword">int</span> months = period.getMonths();<br></code></pre></td></tr></table></figure>
+
+<h3 id="日期对象操作"><a href="#日期对象操作" class="headerlink" title="日期对象操作"></a>日期对象操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 如果你已经有了一个对象，你想对其进行操作，下面以LocalDate为例，LocalDateTime基本同理</span><br><span class="hljs-comment">// 使用withAttribute方法</span><br>LocalDate date1 = LocalDate.of(<span class="hljs-number">2014</span>, <span class="hljs-number">3</span>, <span class="hljs-number">18</span>); <br>LocalDate date2 = date1.withYear(<span class="hljs-number">2011</span>); <br>LocalDate date3 = date2.withDayOfMonth(<span class="hljs-number">25</span>); <br>LocalDate date4 = date3.with(ChronoField.MONTH_OF_YEAR, <span class="hljs-number">9</span>);<br><span class="hljs-comment">// 使用加减法</span><br>LocalDate date1 = LocalDate.of(<span class="hljs-number">2014</span>, <span class="hljs-number">3</span>, <span class="hljs-number">18</span>); <br>LocalDate date2 = date1.plusWeeks(<span class="hljs-number">1</span>); <br>LocalDate date3 = date2.minusYears(<span class="hljs-number">3</span>); <br>LocalDate date4 = date3.plus(<span class="hljs-number">6</span>, ChronoUnit.MONTHS);<br><span class="hljs-comment">// 使用TemporalAdjuster中的静态工厂方法实现更复杂的操作</span><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> java.time.temporal.TemporalAdjusters.*;<br>LocalDate date1 = LocalDate.of(<span class="hljs-number">2014</span>, <span class="hljs-number">3</span>, <span class="hljs-number">18</span>);<br><span class="hljs-comment">// 当前日期的前一个星期日（重要！！！）</span><br><span class="hljs-comment">// 通过这两个方法即可完成我上面说的按周维度切分时间的需求</span><br>LocalDate date2 = date1.with(previousOrSame(DayOfWeek.MONDAY));<br>LocalDate date2 = date1.with(nextOrSame(DayOfWeek.MONDAY));<br><span class="hljs-comment">// 本月的最后一天</span><br>LocalDate date3 = date2.with(lastDayOfMonth());<br></code></pre></td></tr></table></figure>
+
+<h3 id="日期格式化与输出"><a href="#日期格式化与输出" class="headerlink" title="日期格式化与输出"></a>日期格式化与输出</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 日期格式化</span><br><span class="hljs-comment">// 使用parse方法还可以指定日期字符串的格式，以LocalDateTime为例</span><br>LocalDateTime dt1 = LocalDateTime.parse(<span class="hljs-string">&quot;2021-10-28 23:59:59&quot;</span>);<br><span class="hljs-comment">// 指定自己想要的格式</span><br>DateTimeFormatter formatter = DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);<br>LocalDateTime dt1 = LocalDateTime.parse(<span class="hljs-string">&quot;2021-10-28 23:59:59&quot;</span>, formatter);<br><span class="hljs-comment">// 日期时间 =&gt; 字符串</span><br>LocalDateTime now = LocalDateTime.now();<br>String nowText = now.format(formatter);<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>总结：注重思想，然后多练，熟能生巧。</p>
+<p>参考：《Java8实战》</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%B9%A6%E7%B1%8D/">书籍</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java8/">Java8</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/17/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4-%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="hidden-mobile">极客时间-从0开始学微服务</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"U1UUCHgnq8dJ0NTg9kXBufIK-gzGzoHsz","appKey":"qC4W7UtpDpFSgpcwP8wN93o4","path":"window.location.pathname","placeholder":"吐个槽","avatar":"mp","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
