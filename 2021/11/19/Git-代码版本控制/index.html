@@ -16,20 +16,24 @@
   <meta name="description" content="">
   <meta name="author" content="Jin Yan">
   <meta name="keywords" content="">
-  <meta name="description" content="前言现在互联网公司开发一般配的都是Macbook Pro，这个电脑如果你只是听别人说多好用，不用鼠标触控板就行啥的，我估计之前没用过的人上手的感觉应该是也就那样（除了不卡）。一台全新的Macbook Pro只能算一个艺术品（这也是我当年的第一感觉，做工完美的像一个艺术品，这很苹果），只有你花点心思在这个电脑上，它才会成为一件生产力工具。 快捷键command+c&#x2F;v&#x2F;a    复制&#x2F;粘贴&#x2F;全选（后">
+  <meta name="description" content="前言Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。 概念工作区和版本库 分支和HEAD每一个分支就像一个链表，链表的节点是commit，分支名是一个指针（理解这个非常重要！），指向该分支最新提交的commit。HEAD也是一个指针，通常情">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MacBook提升效率的方法">
-<meta property="og:url" content="http://example.com/2021/11/07/MacBook%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="Git-代码版本控制">
+<meta property="og:url" content="http://example.com/2021/11/19/Git-%E4%BB%A3%E7%A0%81%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.html">
 <meta property="og:site_name" content="ViceTone的博客">
-<meta property="og:description" content="前言现在互联网公司开发一般配的都是Macbook Pro，这个电脑如果你只是听别人说多好用，不用鼠标触控板就行啥的，我估计之前没用过的人上手的感觉应该是也就那样（除了不卡）。一台全新的Macbook Pro只能算一个艺术品（这也是我当年的第一感觉，做工完美的像一个艺术品，这很苹果），只有你花点心思在这个电脑上，它才会成为一件生产力工具。 快捷键command+c&#x2F;v&#x2F;a    复制&#x2F;粘贴&#x2F;全选（后">
+<meta property="og:description" content="前言Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。 概念工作区和版本库 分支和HEAD每一个分支就像一个链表，链表的节点是commit，分支名是一个指针（理解这个非常重要！），指向该分支最新提交的commit。HEAD也是一个指针，通常情">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-07T12:15:08.000Z">
-<meta property="article:modified_time" content="2021-11-08T06:30:18.240Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111191508694.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111201533311.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111201535459.gif">
+<meta property="article:published_time" content="2021-11-19T03:16:24.000Z">
+<meta property="article:modified_time" content="2021-11-20T07:35:32.805Z">
 <meta property="article:author" content="Jin Yan">
-<meta property="article:tag" content="MacBook">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111191508694.png">
   
-  <title>MacBook提升效率的方法 - ViceTone的博客</title>
+  <title>Git-代码版本控制 - ViceTone的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -175,7 +179,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="MacBook提升效率的方法">
+            <span class="h2" id="subtitle" title="Git-代码版本控制">
               
             </span>
 
@@ -185,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-11-07 20:15" pubdate>
-        November 7, 2021 pm
+      <time datetime="2021-11-19 11:16" pubdate>
+        November 19, 2021 am
       </time>
     </span>
   
@@ -196,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      1.4k 字
     </span>
   
 
@@ -205,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      4 分钟
     </span>
   
 
@@ -234,52 +238,63 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MacBook提升效率的方法</h1>
+            <h1 style="display: none">Git-代码版本控制</h1>
             
             <div class="markdown-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在互联网公司开发一般配的都是Macbook Pro，这个电脑如果你只是听别人说多好用，不用鼠标触控板就行啥的，我估计之前没用过的人上手的感觉应该是也就那样（除了不卡）。一台全新的Macbook Pro只能算一个艺术品（这也是我当年的第一感觉，做工完美的像一个艺术品，这很苹果），只有你花点心思在这个电脑上，它才会成为一件生产力工具。</p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p><strong>command+c/v/a</strong>    复制/粘贴/全选（后面的command简写为cmd）</p>
-<p><strong>cmd+delete</strong>    删除当前行，选中文件时删除文件</p>
-<p><strong>shift+方向键</strong>    多选</p>
-<p><strong>cmd+shift+左右方向键</strong>    以左方向键为例：选择当前行开头到光标的位置</p>
-<p><strong>cmd+Tab</strong>    切换应用，但是我很少用，后面我会说我的切换应用的方式</p>
-<p><strong>cmd+`</strong>    切换同一应用的窗口，用在Finder很舒服</p>
-<p><strong>cmd+w/q</strong>    关闭当前窗口（应用在后台还没关，常用的一般也不用关）/关闭应用</p>
-<p><strong>cmd+t/n</strong>    新建tab/新建窗口</p>
-<p><strong>cmd+i</strong>    显示文件简介，用得不多</p>
-<p><strong>空格键</strong>    大部分文件都能用，预览文件，好用</p>
-<p>IDEA的快捷键就不列了，实在是太多了，而且最近没怎么写代码有点忘了 = = 。。。</p>
-<h2 id="好用的App"><a href="#好用的App" class="headerlink" title="好用的App"></a>好用的App</h2><p>![image-20211107210816350](/Users/jin/Library/Application Support/typora-user-images/image-20211107210816350.png)</p>
-<p>提升效率的App我主要装了上面这些，有的不是，下面挑几个介绍介绍</p>
-<h3 id="Alfred"><a href="#Alfred" class="headerlink" title="Alfred"></a>Alfred</h3><p>相比自带的Spotlight，Alfred可以定制各种各样workFlow，只要你肯花心思，他啥都能实现。</p>
-<p>唤醒的快捷键我设置的cmd+space。</p>
-<p>这个软件我主要用在两个方面：</p>
-<ul>
-<li>有道翻译的workFlow，唤醒后输入yd，接个空格，后面跟要翻译的</li>
-<li>找文件，唤醒后输入find，接个空格，后面跟文件名</li>
-</ul>
-<h3 id="Snipaste"><a href="#Snipaste" class="headerlink" title="Snipaste"></a>Snipaste</h3><p>截图软件，这个软件我最常用的功能是贴图功能，就是截图后，把截图钉在屏幕上，快捷键可自定义。</p>
-<p>唯一缺点不能滚动截图、长截图。</p>
-<h3 id="Paste"><a href="#Paste" class="headerlink" title="Paste"></a>Paste</h3><p>显示剪切板历史，快捷键我设的<strong>cmd+shift+v</strong>，好用。</p>
-<h3 id="Scroll-Reverser"><a href="#Scroll-Reverser" class="headerlink" title="Scroll Reverser"></a>Scroll Reverser</h3><p>当你接了鼠标后，突然发现滚轮的方向怎么反了？？？原因就是触控板的方向和滚轮方向相反，这里有个有意思的点，触控板两指滑动的逻辑是，苹果把屏幕当成一个画布，这样方向就跟我们想的一样了。</p>
-<p>这个软件可以反转鼠标的滚轮，然后就跟你想的一样了。</p>
-<h3 id="iTerm"><a href="#iTerm" class="headerlink" title="iTerm"></a>iTerm</h3><p>自带终端的替代品，提供更强的自定义功能。</p>
-<p>总之一点，用自定义功能时一定要搞清楚原理是什么，比如说你把shell换成了zsh，那你就要知道环境变量应该配在.zshrc这个文件里。</p>
-<h3 id="BetterTouchTool"><a href="#BetterTouchTool" class="headerlink" title="BetterTouchTool"></a>BetterTouchTool</h3><p><strong>重点！！！好用！！！</strong></p>
-<h4 id="全屏工作法"><a href="#全屏工作法" class="headerlink" title="全屏工作法"></a>全屏工作法</h4><p>我个人习惯将应用全屏化,例如浏览器、IDEA、Typora等，将应用全屏最大的好处在于避免注意力被其他的信息分散掉。</p>
-<p>然而应用打开时一般都不是全屏的，鼠标移到左上角再点一下太慢，如何快速进入全屏，就借助BetterTouchTool，设置触控板五指轻点，进入全屏。</p>
-<p>接下来的问题就是如何切换应用，因为全屏只能显示一个应用。触控板四指左右轻扫，这个系统设置里就有。</p>
-<h4 id="Finder相关设置"><a href="#Finder相关设置" class="headerlink" title="Finder相关设置"></a>Finder相关设置</h4><p>Finder平时用的实在是太多了，因此我设置了一个全局快捷键，<strong>cmd+e</strong>打开Finder。进入Finder后显示哪个目录也是可以设置的，一般设置成下载就挺好，另外将常用的目录放在Finder的侧边栏，很好用。</p>
-<h4 id="自定义快捷键启动App"><a href="#自定义快捷键启动App" class="headerlink" title="自定义快捷键启动App"></a>自定义快捷键启动App</h4><p>我只设置了一个<strong>cmd+r</strong>运行iTerm。</p>
-<p>个人感觉快捷键cmd+xxx这种方式按的最舒服，cmd+shift+xxx还行，cmd+option/control+xxx这种就比较麻烦了，目前左手这边的键盘都设了快捷键，基本够用，后续有常用的再设置。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>一台新的Macbook Pro在生产力方面打分我只给打及格分，但是通过自己的自定义，则可以提升至90分。Mac上的App都是些比较小众的，得花点精力找一找🧐。推荐两个App网站：</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://xclient.info/">https://xclient.info/</a></p>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="工作区和版本库"><a href="#工作区和版本库" class="headerlink" title="工作区和版本库"></a>工作区和版本库</h3><p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111191508694.png" srcset="/img/loading.gif" lazyload alt="image-20211119150849925"></p>
+<h3 id="分支和HEAD"><a href="#分支和HEAD" class="headerlink" title="分支和HEAD"></a>分支和HEAD</h3><p>每一个分支就像一个链表，链表的节点是commit，<strong>分支名是一个指针（理解这个非常重要！）</strong>，指向该分支最新提交的commit。HEAD也是一个指针，通常情况下是指向分支名的，所以和分支名一样，总是指向当前分支上最近一次提交记录。HEAD代表的是我们当前所在的commit，如果我们想要修改提交树，回退版本时，一般都是通过操作HEAD指针。</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li><p><strong>git add</strong></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://www.macwk.com/">https://www.macwk.com/</a></p>
+<li><p><strong>git commit</strong></p>
+</li>
+<li><p><strong>git pull</strong></p>
+</li>
+<li><p><strong>git push</strong></p>
+</li>
+<li><p><strong>git status</strong></p>
+</li>
+<li><p><strong>git tag</strong></p>
+</li>
+<li><p><strong>git log –pretty=oneline</strong> 显示所有提交过的版本信息，不包括已经被删除的 commit 记录和 reset 的操作</p>
+</li>
+<li><p><strong>git reflog</strong> 显示所有记录，常用于回退</p>
+</li>
+<li><p><strong>git branch + git checkout/switch</strong> 创建、切换分支</p>
+</li>
+<li><p><strong>git checkout -b /</strong> <strong>git switch -c</strong> 创建并切换分支，推荐用switch</p>
+</li>
+<li><p><strong>git branch -d/-D</strong> 删除分支/强行删除</p>
+</li>
+<li><p><strong>git stash</strong> 储存当前分支的修改</p>
+</li>
+<li><p><strong>git merge dev</strong> 合并指定分支到当前分支（重要！常用！）</p>
+</li>
+<li><p><strong>git checkout – file</strong> 丢弃工作区的修改（用得少）</p>
+</li>
+<li><p>**git reset HEAD file **把暂存区的修改回退到工作区（用得少）</p>
+</li>
+<li><p>**git reset –hard HEAD^ **已经commit了，版本回退。参数说明–hard丢弃工作区的修改，–soft保留工作区修改</p>
+</li>
+<li><p><strong>git remote add origin git地址</strong> 关联远程仓库，origin是远程库默认命名</p>
+</li>
+<li><p>**git remote -v **查看远程库信息</p>
+</li>
+<li><p><strong>git remote rm origin</strong> 解除关联的远程库</p>
+</li>
+<li><p><strong>git config –global alias.co checkout</strong> 设置别名</p>
 </li>
 </ul>
-<p>多探索，就会发现很多可以提升效率的方法。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="场景一：标准开发流程"><a href="#场景一：标准开发流程" class="headerlink" title="场景一：标准开发流程"></a>场景一：标准开发流程</h3><p>代码仓库新建分支，然后pull到本地，切换过去开发，开发完成后，要切换回本地的master分支pull一下，因为这段时间别人可能上线了新需求，本地的master已经落后了。然后将master分支合并到开发分支，这样开发分支就是最新的分支。最后push，提PR。</p>
+<h3 id="场景二"><a href="#场景二" class="headerlink" title="场景二"></a>场景二</h3><p>场景描述：现在我正在开发一个需求，开发到了一半，代码写到一半我不想commit，这个时候有另一个更急的需求。我们需要切换到另一个分支，这时候发现切换到的新分支上显示了上一个需求还没写完的代码。</p>
+<p>解决方法：使用<strong>git stash</strong>命令存储修改，把较急的需求完成后在切换回来，使用<strong>git stash pop</strong>命令恢复。<strong>git stash list</strong>命令则可以查看我们暂存了哪些修改。</p>
+<h3 id="场景三"><a href="#场景三" class="headerlink" title="场景三"></a>场景三</h3><p>场景描述：如果代码已经push到远程了，如何回退到上一个版本。</p>
+<p>解决方法1：先在本地用<strong>git reset –hard HEAD^</strong>回退到指定版本，然后<strong>git push -f</strong>，这个方法有一定风险，**-f**参数强制push有可能会把别人的代码覆盖，慎用。</p>
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111201533311.gif" srcset="/img/loading.gif" lazyload alt="2021-11-20 15.32.50"></p>
+<p>解决方法2：<strong>git revert HEAD</strong>，这个命令的意思是，通过一次新的commit将HEAD所在的commit抵消掉，然后push到远程即可，注意：revert指定版本有可能会冲突，不推荐使用。</p>
+<p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111201535459.gif" srcset="/img/loading.gif" lazyload alt="2021-11-20 15.34.09"></p>
+<h3 id="场景四"><a href="#场景四" class="headerlink" title="场景四"></a>场景四</h3><p>后续更新中。。。。。。。。。</p>
 
             </div>
             <hr>
@@ -289,7 +304,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%8F%90%E6%95%88/">提效</a>
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF%E4%B8%93%E6%A0%8F/">技术专栏</a>
                     
                   </div>
                 
@@ -297,7 +312,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/MacBook/">MacBook</a>
+                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
                     
                   </div>
                 
@@ -308,18 +323,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/11/19/Git-%E4%BB%A3%E7%A0%81%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git-代码版本控制</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/26/%E4%B9%A6-Java8%E5%AE%9E%E6%88%98/">
-                        <span class="hidden-mobile">书-Java8实战</span>
+                      <a href="/2021/11/07/MacBook%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87%E7%9A%84%E6%96%B9%E6%B3%95/">
+                        <span class="hidden-mobile">MacBook提升效率的方法</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
