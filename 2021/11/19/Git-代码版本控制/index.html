@@ -16,12 +16,12 @@
   <meta name="description" content="">
   <meta name="author" content="Jin Yan">
   <meta name="keywords" content="">
-  <meta name="description" content="前言Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。 概念工作区和版本库 分支和HEAD每一个分支就像一个链表，链表的节点是commit，分支名是一个指针（理解这个非常重要！），指向该分支最新提交的commit。每一次commit修改的就是">
+  <meta name="description" content="前言Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。  概念工作区和版本库 分支和HEAD每一个分支就像一个链表，链表的节点是commit，分支名是一个指针（理解这个非常重要！），指向该分支最新提交的commit。每一次commit修改的就">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git-代码版本控制">
 <meta property="og:url" content="http://example.com/2021/11/19/Git-%E4%BB%A3%E7%A0%81%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.html">
 <meta property="og:site_name" content="ViceTone的博客">
-<meta property="og:description" content="前言Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。 概念工作区和版本库 分支和HEAD每一个分支就像一个链表，链表的节点是commit，分支名是一个指针（理解这个非常重要！），指向该分支最新提交的commit。每一次commit修改的就是">
+<meta property="og:description" content="前言Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。  概念工作区和版本库 分支和HEAD每一个分支就像一个链表，链表的节点是commit，分支名是一个指针（理解这个非常重要！），指向该分支最新提交的commit。每一次commit修改的就">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111191508694.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111221056822.png">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111201533311.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111201535459.gif">
 <meta property="article:published_time" content="2021-11-19T03:16:24.000Z">
-<meta property="article:modified_time" content="2021-11-22T03:32:26.917Z">
+<meta property="article:modified_time" content="2021-11-22T03:41:19.644Z">
 <meta property="article:author" content="Jin Yan">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
@@ -243,7 +243,7 @@
             <h1 style="display: none">Git-代码版本控制</h1>
             
             <div class="markdown-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。</p>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Git是每一个程序员都该会的东西，上学时虽然没有相关课程，但工作后每天都在用。如果开发时只是听别人的话敲Git命令，而不去了解原理，这样一旦出了问题，你也很难独立解决。快速的解决问题，正是学习底层原理的原因。 </p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="工作区和版本库"><a href="#工作区和版本库" class="headerlink" title="工作区和版本库"></a>工作区和版本库</h3><p><img src="https://raw.githubusercontent.com/Vice-Tone/imageRepo/master/img/202111191508694.png" srcset="/img/loading.gif" lazyload alt="image-20211119150849925"></p>
 <h3 id="分支和HEAD"><a href="#分支和HEAD" class="headerlink" title="分支和HEAD"></a>分支和HEAD</h3><p>每一个分支就像一个链表，链表的节点是commit，<strong>分支名是一个指针（理解这个非常重要！）</strong>，指向该分支最新提交的commit。每一次commit修改的就是分支名指针的状态。</p>
 <p>HEAD也是一个指针，通常情况下是指向分支名的，所以和分支名一样，总是指向当前分支上最近一次提交记录。HEAD代表的是我们当前所在的commit，如果我们想要修改提交树，回退版本时，一般都是通过操作HEAD指针。</p>
